@@ -21,7 +21,9 @@ rest {
         method = 'post'
         data = "{ \
           \"user_name\": \"%{User-Name}\", \
-          \"site_ip_address\": \"%{Client-IP-Address}\" \
+          \"site_ip_address\": \"%{Client-IP-Address}\", \
+          \"auth_result\": \"%{control:Auth-Result}\", \
+          \"tls_version\": \"%{control:TLS-Version}\", \
         }"
         body = 'json'
     }
