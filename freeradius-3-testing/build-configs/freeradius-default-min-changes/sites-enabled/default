@@ -144,6 +144,11 @@ post-auth {
 		&reply: += &session-state:
 	}
 
+	update control {
+		Auth-Result := "Accept"
+		TLS-Version := "%{reply:TLS-Session-Version}"
+	}
+
 	-sql
 
 	exec
@@ -160,10 +165,18 @@ post-auth {
 		-sql
 		attr_filter.access_reject
 
+		update control {
+			Auth-Result := "Reject"
+		}
+
+		rest
+
 		eap
 
 		remove_reply_message_if_eap
 	}
+
+
 
 	Post-Auth-Type Challenge {
 
