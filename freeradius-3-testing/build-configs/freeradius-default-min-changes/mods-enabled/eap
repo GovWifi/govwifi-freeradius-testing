@@ -25,6 +25,7 @@ eap {
 	}
 
 	tls-config tls-common {
+	    client_hello_parse = yes
 		private_key_password = password
 		private_key_file = ${certdir}/server.key
 

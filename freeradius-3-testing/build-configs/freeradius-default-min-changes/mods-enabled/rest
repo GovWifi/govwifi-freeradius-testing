@@ -22,6 +22,9 @@ rest {
         data = "{ \
           \"user_name\": \"%{User-Name}\", \
           \"site_ip_address\": \"%{Client-IP-Address}\" \
+          \"tls_version\": \"%{%{reply:TLS-Session-Version}:-unknown}\" \
+          \"tls_cipher_suite\": \"%{%{reply:TLS-Session-Cipher-Suite}:-unknown}\", \
+          \"eap_type\": \"%{%{request:EAP-Type}:-unknown}\" \
         }"
         body = 'json'
     }
@@ -30,7 +33,7 @@ rest {
 		start = ${thread[pool].start_servers}
 		min = ${thread[pool].min_spare_servers}
 		max = ${thread[pool].max_servers}
-		spare = ${thread[pool].max_spare_servers}
+		spare = ${thread[pool].max_spare_servers}ß
 		uses = 0
 		lifetime = 0
 		idle_timeout = 60
